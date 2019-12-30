@@ -1,0 +1,8 @@
+author: Paeng
+name: SimpleEconomy
+version: 1.0.0
+main: com.paeng.simpleEconomy.SimpleEconomy
+commands:
+  secon:
+    description: SimpleEconomy
+    usage: /<command>
