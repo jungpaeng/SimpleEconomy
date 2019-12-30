@@ -7,7 +7,7 @@ object SLAPI {
 
   fun saveBalances() {
     for (p in EconomyManager.getBalanceMap().keys) {
-      plugin.config.set("config$p", EconomyManager.balance.get(p))
+      plugin.config.set("balance.$p", EconomyManager.balance.get(p))
     }
 
     plugin.saveConfig()
@@ -16,8 +16,10 @@ object SLAPI {
   fun loadBalances() {
     if (plugin.config.contains("balance")) return
 
-    for (s in plugin.config.getConfigurationSection("balance")!!.getKeys(false)) {
-      EconomyManager.setBalance(s, plugin.config.getDouble("balance$s"))
-    }
+    try {
+      for (s in plugin.config.getConfigurationSection("balance")?.getKeys(false)!!) {
+        EconomyManager.setBalance(s, plugin.config.getDouble("balance.$s"))
+      }
+    } catch (e: Exception) {}
   }
 }
